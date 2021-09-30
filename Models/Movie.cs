@@ -1,18 +1,19 @@
-using Sstem;
+using System;
 
-namespace BACK-DSV.Models
+namespace BACK_DSV.Models
 {
     public class Movie
     {
         public int Id { get; set;}
-        
+
         public string Name { get; set;}
 
-        public string Gender { get; set;}
+        public string Genre { get; set;}
 
+        public float Rating { get; set;}
+        
         public string Director { get; set;}
 
-        public float Id { get; set;}
     }
 }
 

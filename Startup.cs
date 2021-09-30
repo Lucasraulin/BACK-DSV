@@ -11,6 +11,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using BACK_DSV.Data;
 
 namespace BACK_DSV
 {
@@ -26,6 +28,10 @@ namespace BACK_DSV
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options => options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+
+            services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("database"));
+            //    services.AddDbContext<DataContext>(options => options.UseInMemoryDatabase("database"));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -43,6 +49,8 @@ namespace BACK_DSV
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BACK_DSV v1"));
             }
+
+            app.UseCors("CorsPolicy");
 
             app.UseHttpsRedirection();
 

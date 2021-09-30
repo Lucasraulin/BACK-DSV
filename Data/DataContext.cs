@@ -1,16 +1,14 @@
-using BACK-DSV.Models;
+using BACK_DSV.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BACK-DSV.Data
+namespace BACK_DSV.Data
 {
 
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
 
-        public DbSet<Produto> Movies { get; set; }
-
-        // override OnModelCreating()
+        public DbSet<Movie> Movies { get; set; }
 
     }
 }
